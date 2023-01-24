@@ -27,6 +27,8 @@ public class Calculadora_basica {
     private JTextArea OperacionesText;
     private JTextArea RessultadoText;
 
+    double numero1, numero2, result, resultado;
+    String opcion;
     public Calculadora_basica() {
         CeroButton.addActionListener(new ActionListener() {
             @Override
@@ -104,6 +106,88 @@ public class Calculadora_basica {
             }
         });
 
+        PuntoButton17.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!OperacionesText.getText().contains(".")) {
+                    OperacionesText.setText(OperacionesText.getText() + PuntoButton17.getText());
+                }
+            }
+        });
+        SumaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numero1 = Double.parseDouble(OperacionesText.getText());
+                RessultadoText.setText("");
+                RessultadoText.setText(OperacionesText.getText()+" + ");
+                opcion = "+";
+                OperacionesText.setText("");
+            }
+        });
+        RestaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numero1 = Double.parseDouble(OperacionesText.getText());
+                RessultadoText.setText("");
+                RessultadoText.setText(RessultadoText.getText()+" - ");
+                opcion = "-";
+                OperacionesText.setText("");
+            }
+        });
+
+        MultiplicacionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numero1 = Double.parseDouble(OperacionesText.getText());
+                RessultadoText.setText("");
+                RessultadoText.setText(RessultadoText.getText()+" x ");
+                opcion = "x";
+                OperacionesText.setText("");
+            }
+        });
+
+        DivisionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numero1 = Double.parseDouble(OperacionesText.getText());
+                RessultadoText.setText("");
+                RessultadoText.setText(RessultadoText.getText()+" / ");
+                opcion = "/";
+                OperacionesText.setText("");
+            }
+        });
+        IgualButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                numero2 = Double.parseDouble(OperacionesText.getText());
+
+                if (opcion == "+") {
+                    result = numero1 + numero2;
+                    RessultadoText.setText(resultado + " + " + numero1+ " + " + numero2);
+                    OperacionesText.setText(String.valueOf(result));
+                }
+                else if (opcion == "-") {
+                    result = numero1 - numero2;
+                    RessultadoText.setText(numero1+ " - " + numero2);
+                    OperacionesText.setText(String.valueOf(result));
+                }
+                else if (opcion == "x") {
+                    result = numero1 * numero2;
+                    RessultadoText.setText(numero1+ " x " + numero2);
+                    OperacionesText.setText(String.valueOf(result));
+                }
+                else if (opcion == "/") {
+                    if (numero2 == 0){
+                        RessultadoText.setText(" No se puede dividir entre cero ");
+                    }
+                    else {
+                        result = numero1 / numero2;
+                        RessultadoText.setText(numero1 + " / " + numero2);
+                        OperacionesText.setText(String.valueOf(result));
+                    }
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
